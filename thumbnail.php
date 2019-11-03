@@ -9,7 +9,7 @@ $THUMB_SIZE = 196;
 $PHOTOS_BASEPATH="/mnt/bete/02_Bilder";
 $PHOTOS_THUMBPATH="/var/www/thumbnails";
 $IMAGE_EXTENSIONS=array("jpg","png","jpeg");
-$basepath = str_replace("/photos/thumbnail.php","",$_SERVER['REQUEST_URI']);
+$basepath = str_replace("/photos/thumbnail.php","",urldecode($_SERVER['REQUEST_URI']));
 $thumbpath = $PHOTOS_THUMBPATH."/".$basepath;
 
 if (file_exists($thumbpath))
