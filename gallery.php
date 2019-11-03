@@ -10,7 +10,7 @@ error_reporting(E_ALL | E_STRICT);
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <link rel="stylesheet" type="text/css" href="/photos/styling.css">
 <title>
-Gallery
+Gallerie
 </title>
 </head>
 <body>
@@ -58,11 +58,19 @@ $n_pages = floor($cnt / $PAGE_SIZE);
  echo "<span>Seite ".$page."/".$n_pages."</span>";
  if ($page > 0)
  {
-	 echo "<a href='/photos/gallery.php?path=".$imgpath."&page=".($page-1)."'>prev</a>";
+	 echo "<div class='gallerynav'><a href='/photos/gallery.php?path=".$imgpath."&page=".($page-1)."'>Zurück</a></div>";
+ }
+ else
+ {
+	 echo "<div class='gallerynav'>Zurück</div>";
  }
  if ($page<$n_pages)
  {
-	 echo "<a href='/photos/gallery.php?path=".$imgpath."&page=".($page+1)."'>next</a>";
+	 echo "<div class='gallerynav'><a href='/photos/gallery.php?path=".$imgpath."&page=".($page+1)."'>Vor</a></div>";
+ }
+ else
+ {
+	 echo "<div class='gallerynav'>Vor</div>";
  }
  echo $tablecontent;
  ?>

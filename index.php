@@ -74,8 +74,8 @@ function list_files($basepath,$do_recurse) {
 				{
 					$basepath_link = $basepath;
 				}
-				echo "<div class='folderbox ".$bgclass."'><div class='folder'><a href='/photos/index.php/".$basepath_link.$f."' class='folderlink'>".$f."</a><span class='gallerylink'><a href='/photos/gallery.php?path=".$basepath_link.$f."&page=0'>Gallery</a></span></div>";
-				echo "<div class='descr'>".$photo_cntr." Photos, ".$video_cntr." Videos, ".$other_cntr." Others</div></div>";
+				echo "<div class='folderbox ".$bgclass."'><div class='folder'><a href='/photos/index.php/".$basepath_link.$f."'>".$f."</a></div><div class='navright'><div class='gallerylink'><a href='/photos/gallery.php?path=".$basepath_link.$f."&page=0'>Gallery</a></div>";
+				echo "<div class='descr'>".$photo_cntr." Photos, ".$video_cntr." Videos, ".$other_cntr." Others</div></div></div>";
 			}
 			$cnt++;
 		}
