@@ -24,6 +24,10 @@ a, div, span, h3 {font-family: Arial, Helvetica, sans-serif}
 
 div.ol_inner {text-align: center; padding-top: 20px}
 
+td.thumbcontainer {width: 196px;height: 196px}
+
+.padded {margin: 1.2em}
+
 #overlay {
   position:fixed;
   display: none; /* Hidden by default */
