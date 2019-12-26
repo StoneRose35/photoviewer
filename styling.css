@@ -16,19 +16,37 @@ div.folderbox {padding-bottom: 0.7em; padding-top: 0.7em; padding-left: 1.2em; p
 
 img.fs { height: 95%; width: auto; text-align: center}
 
+img.fs_rotated { height: auto; width: 95%; text-align: center}
+
 img.thumb { cursor: pointer}
 
 a.folderlink {width: 14em; display: inline-block}
 
 a, div, span, h3 {font-family: Arial, Helvetica, sans-serif}
 
-div.ol_inner {text-align: center; padding-top: 20px}
+div.ol_inner {text-align: center; padding-top: 0px}
+
+div.large {font-size: 3.5em}
 
 td.thumbcontainer {width: 196px;height: 196px}
 
 .padded {margin: 1.2em}
 
 #overlay {
+  position:fixed;
+  display: none; /* Hidden by default */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.8); /* Black background with opacity */
+  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer; /* Add a pointer on hover */
+}
+
+#ol_loading {
   position:fixed;
   display: none; /* Hidden by default */
   width: 100%; /* Full width (cover the whole page) */

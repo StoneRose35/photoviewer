@@ -13,6 +13,12 @@ error_reporting(E_ALL | E_STRICT);
 Galerie
 </title>
 <script type="text/javascript">
+function init()
+{
+	var img_el = document.getElementById("olimage");
+	img_el.addEventListener("load",function(){on_overlay_loaded(img_el);},false);
+}
+
 function processImageElement(el)
 {
 	if (document.getElementById("rotate_images").checked == true)
@@ -58,10 +64,69 @@ function processImageElement(el)
 
 function openoverlay(el)
 {
-	document.getElementById("overlay").style.display = "block";
 	var current_src = el.src;
-	document.getElementById("olimage").src=current_src.replace(/\/photos\/thumbnail.php\//,'/bilder/');
-	document.getElementById("olimage").style.transform = el.style.transform;
+        var olimage = document.getElementById("olimage");
+        olimage.style.transform = el.style.transform;
+	olimage.src=current_src.replace(/\/photos\/thumbnail.php\//,'/bilder/');
+	var el_loading =  document.getElementById("ol_loading");
+    	el_loading.style.padding = document.documentElement.scrollHeight/2 + "px 0";
+        el_loading.style.display = "block";
+}
+
+function on_overlay_loaded(el)
+{
+        document.getElementById("ol_loading").style.display = "none";
+	document.getElementById("overlay").style.display = "block";
+        var olimage = document.getElementById("olimage");
+
+        var ol_inner=document.getElementById("overlay");
+	if (olimage.style.transform=="rotate(90deg)" || olimage.style.transform=="rotate(270deg)")
+	{
+        	var img_width = olimage.naturalHeight;
+        	var img_height = olimage.naturalWidth;
+	} 
+	else
+	{
+       		var img_width = olimage.naturalWidth;
+        	var img_height = olimage.naturalHeight;
+	}
+        var img_ratio = img_height/img_width;
+    var c_height=ol_inner.clientHeight;
+    var c_width=ol_inner.clientWidth;
+    var c_img_ratio = c_height/c_width;
+    if (olimage.style.transform=="rotate(90deg)" || olimage.style.transform=="rotate(270deg)")
+    {
+	olimage.style.transformOrigin = "left";
+	olimage.style.transform = "translate(50%, -50%) " + olimage.style.transform;
+    if (img_ratio > c_img_ratio)
+    {
+        olimage.style.width = c_height;
+        olimage.style.height = c_height/img_ratio;
+
+    }
+    else
+    {   
+        olimage.style.height = c_width;
+        olimage.style.width = c_width/img_ratio;
+    }
+
+	}
+    else
+    {
+            olimage.style.transformOrigin = "inherit";
+	    //olimage.style.transform = el.style.transform;
+	    if (img_ratio > c_img_ratio)
+	    {
+		olimage.style.height = c_height;
+		olimage.style.width = c_height/img_ratio;
+	    }
+	    else
+	    {   
+		olimage.style.width = c_width;
+		olimage.style.height = c_width*img_ratio;
+	    }
+    }
+
 }
 
 function close_overlay()
@@ -70,7 +135,7 @@ function close_overlay()
 }
 </script>
 </head>
-<body>
+<body onload="init()">
 <?php
 $PHOTOS_BASEPATH="/mnt/bete/02_Bilder";
 $IMAGE_EXTENSIONS=array("jpg","png","jpeg");
@@ -150,8 +215,11 @@ $n_pages = floor($cnt / $PAGE_SIZE);
  echo "<div class='gallerynav'><input type='checkbox' id='rotate_images' class='padded'>Bilder drehen</input><button class='padded'>Diashow</button></div>";
  echo $tablecontent;
  ?>
- <div id='overlay' onclick='close_overlay();'><div class='ol_inner'>
- <img id='olimage' class='fs' src=''></div></img>
+ <div id='overlay' onclick='close_overlay();'><div class='ol_inner' id='id_ol_inner'>
+ <img id='olimage' src='' onload=""></img></div>
  </div>
+<div id='ol_loading'>
+<div class='ol_inner large'>Loading</div>
+</div>
 </body>
 </HTML>
