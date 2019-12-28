@@ -57,5 +57,19 @@ td.thumbcontainer {width: 196px;height: 196px}
   bottom: 0;
   background-color: rgba(0,0,0,0.8); /* Black background with opacity */
   z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
-  cursor: pointer; /* Add a pointer on hover */
+  /*cursor: pointer; Add a pointer on hover */
+}
+
+#ol_nav {
+	position: absolute;
+	display: none;
+	right: 0;
+	top: 0;
+	padding: 12px;
+	z-index: 3;
+}
+img.icon_nav {
+	height: 24px;
+	width: 24px;
+	cursor: pointer;
 }
